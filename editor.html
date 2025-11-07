@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Suite — Editor</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:10px;justify-content:space-between;"><div><a class="tool" href="index.html">← Home</a></div><h1 style="margin:0;">Study Cards — Editor</h1><div><span id="set-indicator" class="inline" style="color:var(--muted)">Set: <strong id="set-name">(set)</strong></span></div></div>
+    <div class="toolbar">
+      <div class="tool-group">
+        <button id="tool-pen" class="tool active" title="Pen (P)">✏️ Pen</button>
+        <label class="inline">
+          <span>Size</span>
+          <input id="pen-size" type="range" min="1" max="12" value="2" />
+        </label>
+        <label class="inline" title="Rotate selected image">
+          <span>Rotate</span>
+          <input id="image-rotate" type="range" min="-180" max="180" value="0"/>
+        </label>
+        <button id="btn-rot-left" class="tool" title="Rotate -15°">⟲ -15°</button>
+        <button id="btn-rot-right" class="tool" title="Rotate +15°">⟳ +15°</button>
+      </div>
+
+      <div class="tool-group">
+        <button id="tool-eraser" class="tool" title="Eraser (E)">🧽 Eraser</button>
+        <label class="inline">
+          <span>Size</span>
+          <input id="eraser-size" type="range" min="6" max="45" value="18" />
+        </label>
+        <label class="inline" title="Rotate selected image">
+          <span>Rotate</span>
+          <input id="image-rotate" type="range" min="-180" max="180" value="0"/>
+        </label>
+        <button id="btn-rot-left" class="tool" title="Rotate -15°">⟲ -15°</button>
+        <button id="btn-rot-right" class="tool" title="Rotate +15°">⟳ +15°</button>
+      </div>
+
+      <div class="tool-group">
+        <button id="tool-select" class="tool" title="Select/Move images (V)">🖱️ Select</button>
+        <button id="btn-add-image" class="tool" title="Add image">🖼️ Add image</button>
+        <input id="image-file" type="file" accept="image/*" style="display:none"/>
+        <label class="inline" title="Scale selected image">
+          <span>Img scale</span>
+          <input id="image-scale" type="range" min="10" max="300" value="100"/>
+        </label>
+        <label class="inline" title="Rotate selected image">
+          <span>Rotate</span>
+          <input id="image-rotate" type="range" min="-180" max="180" value="0"/>
+        </label>
+        <button id="btn-rot-left" class="tool" title="Rotate -15°">⟲ -15°</button>
+        <button id="btn-rot-right" class="tool" title="Rotate +15°">⟳ +15°</button>
+      </div>
+
+      <div class="tool-group">
+        <button id="btn-undo" class="tool" title="Undo (Ctrl+Z)">↶ Undo</button>
+        <button id="btn-redo" class="tool" title="Redo (Ctrl+Y)">↷ Redo</button>
+        <button id="btn-clear" class="tool" title="Clear side">🗑️ Clear side</button>
+      </div>
+
+      <div class="tool-group">
+        <button id="btn-save-png" class="tool" title="Export current side as PNG">⬇️ PNG</button>
+        <button id="btn-export-deck" class="tool" title="Export deck JSON">⬇️ Deck</button>
+        <button id="btn-import-deck" class="tool" title="Import deck JSON">⬆️ Deck</button>
+        <input id="deck-file" type="file" accept="application/json" style="display:none"/>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <div class="deck-controls">
+        <button id="btn-prev">◀</button>
+        <span id="deck-info">Card 1 / 1</span>
+        <button id="btn-next">▶</button>
+      </div>
+      <div class="side-controls">
+        <button id="btn-front" class="side active">Front</button>
+        <button id="btn-back" class="side">Back</button>
+      </div>
+      <div class="card-controls">
+        <button id="btn-new-card">➕ New card</button>
+        <button id="btn-duplicate-card">📄 Duplicate</button>
+        <button id="btn-delete-card">🗑️ Delete card</button>
+      </div>
+      <details class="help">
+        <summary>Help</summary>
+        <ul>
+          <li><b>P</b>=Pen, <b>E</b>=Eraser, <b>V</b>=Select/Move</li>
+          <li>Images: Add via button. Drag to move. Use “Img scale” to resize.</li>
+          <li>Everything is saved locally (browser storage). Export deck to back up.</li>
+        </ul>
+      </details>
+    </aside>
+
+    <section class="canvas-wrap">
+      <canvas id="grid" width="1200" height="800"></canvas>
+      <canvas id="draw" width="1200" height="800"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <span>All drawing stays on your device. No OCR. Local-only.</span>
+  </footer>
+
+  <script src="sets.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>
